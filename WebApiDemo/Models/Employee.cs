@@ -17,17 +17,13 @@ namespace WebApiDemo.Models
         public int BusinessEntityId { get; set; }
         public string NationalIdNumber { get; set; }
         public string LoginId { get; set; }
-        public Nullable<short> OrganizationLevel { get; set; }
         public string JobTitle { get; set; }
         public System.DateTime BirthDate { get; set; }
         public string MaritalStatus { get; set; }
         public string Gender { get; set; }
         public System.DateTime HireDate { get; set; }
-        public bool SalariedFlag { get; set; }
         public short VacationHours { get; set; }
         public short SickLeaveHours { get; set; }
-        public bool CurrentFlag { get; set; }
-        public System.Guid rowguid { get; set; }
         public System.DateTime ModifiedDate { get; set; }
     }
 }

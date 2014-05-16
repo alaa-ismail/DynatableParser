@@ -4,9 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6005: The data type 'hierarchyid' is currently not supported for the target Entity Framework version; the column 'AdventureWorks2012.HumanResources.Employee' in the table 'OrganizationNode' was excluded.-->
+    <Schema Namespace="DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="BusinessEntityID" />
@@ -14,50 +12,41 @@ warning 6005: The data type 'hierarchyid' is currently not supported for the tar
           <Property Name="BusinessEntityID" Type="int" Nullable="false" />
           <Property Name="NationalIDNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="LoginID" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="OrganizationLevel" Type="smallint" StoreGeneratedPattern="Computed" />
           <Property Name="JobTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="BirthDate" Type="date" Nullable="false" />
           <Property Name="MaritalStatus" Type="nchar" MaxLength="1" Nullable="false" />
           <Property Name="Gender" Type="nchar" MaxLength="1" Nullable="false" />
           <Property Name="HireDate" Type="date" Nullable="false" />
-          <Property Name="SalariedFlag" Type="bit" Nullable="false" />
           <Property Name="VacationHours" Type="smallint" Nullable="false" />
           <Property Name="SickLeaveHours" Type="smallint" Nullable="false" />
-          <Property Name="CurrentFlag" Type="bit" Nullable="false" />
-          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityContainer Name="DataModelStoreContainer">
-          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="HumanResources" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AdventureWorksEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employee" EntityType="DataModel.Employee" />
+        </EntityContainer>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="BusinessEntityId" />
           </Key>
           <Property Name="BusinessEntityId" Type="Int32" Nullable="false" />
-          <Property Name="NationalIdNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LoginId" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="OrganizationLevel" Type="Int16" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="JobTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NationalIdNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="LoginId" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="JobTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="MaritalStatus" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="MaritalStatus" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="HireDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="SalariedFlag" Type="Boolean" Nullable="false" />
           <Property Name="VacationHours" Type="Int16" Nullable="false" />
           <Property Name="SickLeaveHours" Type="Int16" Nullable="false" />
-          <Property Name="CurrentFlag" Type="Boolean" Nullable="false" />
-          <Property Name="rowguid" Type="Guid" Nullable="false" />
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityContainer Name="AdventureWorksEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Employee" EntityType="Self.Employee" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -67,21 +56,17 @@ warning 6005: The data type 'hierarchyid' is currently not supported for the tar
           <EntitySetMapping Name="Employee">
             <EntityTypeMapping TypeName="DataModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="BusinessEntityId" ColumnName="BusinessEntityID" />
-                <ScalarProperty Name="NationalIdNumber" ColumnName="NationalIDNumber" />
-                <ScalarProperty Name="LoginId" ColumnName="LoginID" />
-                <ScalarProperty Name="OrganizationLevel" ColumnName="OrganizationLevel" />
-                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
-                <ScalarProperty Name="SalariedFlag" ColumnName="SalariedFlag" />
-                <ScalarProperty Name="VacationHours" ColumnName="VacationHours" />
-                <ScalarProperty Name="SickLeaveHours" ColumnName="SickLeaveHours" />
-                <ScalarProperty Name="CurrentFlag" ColumnName="CurrentFlag" />
-                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="SickLeaveHours" ColumnName="SickLeaveHours" />
+                <ScalarProperty Name="VacationHours" ColumnName="VacationHours" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginID" />
+                <ScalarProperty Name="NationalIdNumber" ColumnName="NationalIDNumber" />
+                <ScalarProperty Name="BusinessEntityId" ColumnName="BusinessEntityID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

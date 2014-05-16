@@ -82,6 +82,10 @@
   <ItemGroup>
     <Content Include="app.html" />
     <Content Include="app.js" />
+    <Content Include="App_Data\AdventureWorksLocal.mdf" />
+    <Content Include="App_Data\AdventureWorksLocal_log.ldf">
+      <DependentUpon>AdventureWorksLocal.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -158,9 +162,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DynatableParser\DynatableParser.csproj">
       <Project>{a2cdd585-9f15-4348-920f-571df1f0e18a}</Project>
