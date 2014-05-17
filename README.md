@@ -6,7 +6,8 @@ by Dynatable into LINQ operations on the server-side dataset.
 
 Installation
 --------------
-Use Nuget Package Manager to install 
+Use Nuget Package Manager to install
+
 ```Install-Package DynatableParser ```
 
 Usage
