@@ -1,18 +1,17 @@
 DynatableParser
 ===============
 
-DynatableParser is a C# library to handle server-side processing for Dynatable. It converts the AJAX request parameters sent 
-by Dynatable into LINQ operations on the server-side dataset.
+DynatableParser is a C# library to handle server-side processing for [Dynatable]. It converts the AJAX request parameters sent by Dynatable into LINQ operations on the server-side dataset.
 
 Installation
 --------------
-Use Nuget Package Manager to install
+Use the Nuget Package Manager to install.
 
 ```Install-Package DynatableParser ```
 
 Usage
 -------
-To use DynatableParser, you need to supply a list key-value pairs representing the client-side query parameters and a dataset.
+Provide the DynatableParser constructor with a list of key-value pairs containing the client-side query and an EF dataset.
 
 #####ASP.NET Web API Example:
 ```
@@ -26,13 +25,13 @@ To use DynatableParser, you need to supply a list key-value pairs representing t
             // Entity Framework context 
             AdventureWorksEntities dbContext = new AdventureWorksEntities();
             
-            // Create parser
+            // Create the parser
             DynatableParser<Employee> parser = new DynatableParser<Employee>(parameters, dbContext.Employee);
             
             return parser.Result;
         }
+    }
 ```
-
 #####ASP.NET MVC Example:
 ```
     public class HomeController : Controller
@@ -47,17 +46,24 @@ To use DynatableParser, you need to supply a list key-value pairs representing t
             // Entity Framework context
             AdventureWorksEntities dbContext = new AdventureWorksEntities();
             
-            // Create parser
+            // Create the parser
             DynatableParser<Employee> parser = new DynatableParser<Employee>(parameters, dbContext.Employee);
             
             // Set up JSON formatter
             var camelCaseFormatter = new JsonSerializerSettings();
             camelCaseFormatter.ContractResolver = new CamelCasePropertyNamesContractResolver();
             
-            
             return JsonConvert.SerializeObject(parser.Result, camelCaseFormatter);
         }
     }
 ```
 
+Issues
+-------
+Please feel free to submit any issues here on Github.
 
+https://github.com/alaa-ismail/DynatableParser/issues
+
+
+
+[Dynatable]:https://www.dynatable.com/
